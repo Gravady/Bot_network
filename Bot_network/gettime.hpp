@@ -3,7 +3,7 @@
 #include <string>
 #include <typeinfo>
 #include <optional>
-#include <concepts> //For concept variable PointerReturnType 
+#include <concepts>
 
 // Check if sysinfoapi.h is available
 #ifdef _WIN32
@@ -30,33 +30,21 @@
 	}
 #else
 	#include <chrono>
-#endif 
+#endif
 
-//Make custom variable using concept to return something very elegantly
+template <typename From, typename To>
+concept IsConvertableTo = std::is_convertible_to<From, To>; 
+
 template <typename T>
-concept PointerReturnType = 
+concept IsValidDataTypeTime = requires(T t){
+	{ std::is_same_v<T, char> } -> std::convertible_to<int>; 
+	{ std::common_with<decltype<T, char>> } -> std::assignable_from<char>; //std::common_type_v eval 
 
-//Choose between either systime decider
+		requires IsConvertableTo<T, char>;
+}
 
-using specified_time_variable = std::string(*)();
-template <typename T>
-specified_time_variable GetTime() {
-
-}	
 template <typename T>
 class EvalType {
-	public:
-		explicit EvalType(const std::optional<T>& type) noexcept : type_(type) {}
-		operator std::string() const{
-			if (type != std::nullopt) {
-				return typeid(_type).name();
-			}
-			else { return "No value"; }
-		}
-		Derived& ReturnDerived() {
-			return static_cast<EvalType&>(*this);
-		}
-	};
-private:
-	std::optional<T> type_;
-}
+public:
+
+};
