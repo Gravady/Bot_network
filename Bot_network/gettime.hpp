@@ -33,18 +33,22 @@
 #endif
 
 template <typename From, typename To>
-concept IsConvertableTo = std::is_convertible_to<From, To>; 
+concept IsConvertableTo = std::is_convertible_v<From, To>; 
 
 template <typename T>
-concept IsValidDataTypeTime = requires(T t){
-	{ std::is_same_v<T, char> } -> std::convertible_to<int>; 
-	{ std::common_with<decltype<T, char>> } -> std::assignable_from<char>; //std::common_type_v eval 
-
-		requires IsConvertableTo<T, char>;
-}
-
-template <typename T>
-class EvalType {
-public:
-
+concept IsValidDataTypeTime = requires(T t) {
+	{ std::is_same_v<T, char> } -> std::convertible_to<int>;
+	requires IsConvertableTo<T, char>;
+	requires IsConvertableTo<T, int>;
+	requires IsConvertableTo<T, float>;
 };
+
+template <typename T>
+auto ReturnTime() {
+	if (time) {
+		return IsValidDataTypeTime<time>;
+	}
+	else {
+		return std::chrono::system_clock;
+	}
+}
