@@ -24,9 +24,9 @@
 	#include <sysinfoapi.h>
 	template <typename T>
 	constexpr auto GetTime() {
-		T* time = new time;
-		time = GetLocalTime(); 
-		
+		T time; 
+		time = GetLocalTime();
+		return time;
 	}
 #else
 	#include <chrono>
@@ -49,9 +49,6 @@ auto ReturnTime() {
 		return IsValidDataTypeTime<time>;
 	}
 	else {
-		return std::chrono::system_clock;
+		return IsValidDataTypeTime<decltype(std::chrono::system_clock);
 	}
 }
-
-
-//Testing

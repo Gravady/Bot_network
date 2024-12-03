@@ -24,7 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="header_testing.cpp" />
-    <ClCompile Include="testing.cpp" />
+    <ClCompile Include="general_macro.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -103,7 +103,7 @@ const std::vector<std::string> error_types = {
 //For time function
 #ifndef SYSTEM_TIME
 #define SYSTEM_TIME
-#include <gettime.hpp>
+#include "gettime.hpp"
 #endif
 
 std::vector <std::string> custom_error_types_list = {
