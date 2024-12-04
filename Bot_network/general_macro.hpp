@@ -4,7 +4,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-
+#include <concepts>
+#include <algorithm>
 
 
 //Return type solver to convert string into double or int
@@ -32,8 +33,6 @@ void Example() {
 }
 
 #ifndef VECTORREF 
-	//FUCKING MACRO HAS FUCKED ME IN THE ASS WITH VECTOR
-	//FIX THIS
 	template <typename T, typename Vec = std::vector<T>>
 	concept SameVectorType = requires(T t, Vec vec) {
 		{ vec.push_back(t) };
@@ -43,7 +42,7 @@ void Example() {
 #endif
 template <typename T> 
 T FetchVectorItem(VectorRef<T> vector_type, T t) {
-	
+	SameVectorType
 	return std::count
 }
 

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="gettime.hpp" />
     <ClInclude Include="HTTP_BASE.hpp" />
+    <ClInclude Include="screen_look.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="header_testing.cpp" />
