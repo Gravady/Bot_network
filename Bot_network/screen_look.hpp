@@ -25,6 +25,8 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 
 	//Work on InvalidImageTypes to filter what image types can be given
 	//https://stackoverflow.com/questions/23813843/image-view-invalid-image-type
+
+	//Probably put this into a constexpr macro for compile time opt?
 	const WCHAR* InvalidImageTypes[]{
 		L"image/bmp",
 		L"image/tiff",
