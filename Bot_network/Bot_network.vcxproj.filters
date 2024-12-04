@@ -24,6 +24,9 @@
     <ClInclude Include="screen_look.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="computer_oopsie.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="header_testing.cpp">
