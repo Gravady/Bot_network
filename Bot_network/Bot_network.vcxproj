@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="computer_oopsie.hpp" />
+    <ClInclude Include="destruct_init.hpp" />
     <ClInclude Include="gettime.hpp" />
     <ClInclude Include="HTTP_BASE.hpp" />
     <ClInclude Include="screen_look.hpp" />

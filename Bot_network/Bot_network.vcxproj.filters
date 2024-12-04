@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\BadComputer">
+      <UniqueIdentifier>{0cb436a6-0056-4dbd-b813-8f8f8f30d364}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HTTP_BASE.hpp">
@@ -24,8 +27,8 @@
     <ClInclude Include="screen_look.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="computer_oopsie.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="destruct_init.hpp">
+      <Filter>Header Files\BadComputer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
