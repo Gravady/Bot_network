@@ -15,6 +15,7 @@
 #include <iostream>
 #include <cerrno> 
 #include <memory>
+#include <algorithm>
 
 
 //Thanks to https://gist.github.com/prashanthrajagopal/05f8ad157ece964d8c4d for original code
@@ -65,7 +66,15 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 	for (UINT j = 0; j < num; ++j)
 	{
 		if (wcscmp(pImageCodecInfo[j].MimeType, format) == 0)
-		{
+		{	
+			bool isValid = std::count(std::begin(InvalidImageTypes), std::end(InvalidImageTypes),
+				pImageCodecInfo[j].MimeType) > 0;
+
+			if (!isValid) {
+				std::cerr << "Invalid image type: " << pImageCodecInfo << std::endl;
+				free(pImageCodecInfo);
+				return -1;
+			}
 			*pClsid = pImageCodecInfo[j].Clsid;
 			free(pImageCodecInfo);
 			return j;
