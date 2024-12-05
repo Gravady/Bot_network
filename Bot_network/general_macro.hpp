@@ -48,7 +48,7 @@ T FetchVectorItem(VectorRef<T> vector_type, T t) {
 
 
 //This should probably be moved up or put into a different file with only macros
-template <typename ...Args = std::vector_t> //Initilize to contains args in vector? 
+template <typename ...Args> //Initilize to contains args in vector? 
 #ifndef ALLOW_REMOVE_ITEMS
 	template <typename T = std::nullptr_t, class C>
 	concept DestructItem = std::is_class_v<C> && std::is_destructible_v<T>;

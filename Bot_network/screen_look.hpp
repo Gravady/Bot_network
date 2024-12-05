@@ -16,16 +16,13 @@
 #include <cerrno> 
 #include <memory>
 #include <algorithm>
-
+#include <filesystem>
 
 //Thanks to https://gist.github.com/prashanthrajagopal/05f8ad157ece964d8c4d for original code
 int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 	//using namespace Gdiplus;
 	UINT  num = 0;
 	UINT  size = 0;
-
-	//Work on InvalidImageTypes to filter what image types can be given
-	//https://stackoverflow.com/questions/23813843/image-view-invalid-image-type
 
 	//Probably put this into a constexpr macro for compile time opt?
 	const WCHAR* InvalidImageTypes[]{
@@ -71,7 +68,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 				pImageCodecInfo[j].MimeType) > 0;
 
 			if (!isValid) {
-				std::cerr << "Invalid image type: " << pImageCodecInfo << std::endl;
+				std::cerr << "Invalid image type: " << &pImageCodecInfo[j].MimeType << std::endl;
 				free(pImageCodecInfo);
 				return -1;
 			}
@@ -84,12 +81,16 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 	return 0;
 }
 
-//Work on a place to collectively store images 
-void StoreImage() {
-
+//Continue working
+void StoreImage(const char *directory, WCHAR* image) {
+	bool filesystem_exists = std::filesystem::exists(directory);
+	if (!filesystem_exists) {
+		std::filesystem::create_directory("Client_Picture");
+	}
+	//Store images to the directory
 }
 
-void gdiscreen() {
+void gdiscreen(WCHAR* file_type) {
 	//using namespace Gdiplus;
 	IStream* istream;
 	HRESULT res = CreateStreamOnHGlobal(NULL, true, &istream);
@@ -108,11 +109,9 @@ void gdiscreen() {
 		BitBlt(memdc, 0, 0, Width, Height, scrdc, 0, 0, SRCCOPY);
 
 		Gdiplus::Bitmap bitmap(membit, NULL);
-		CLSID clsid;
-		GetEncoderClsid(L"image/jpeg", &clsid);
-
+		CLSID clsid	;
+		GetEncoderClsid(file_type, &clsid);
 		bitmap.Save(istream, &clsid, NULL);
-		delete& clsid;
 		DeleteObject(memdc);
 		DeleteObject(membit);
 		::ReleaseDC(0, scrdc);
