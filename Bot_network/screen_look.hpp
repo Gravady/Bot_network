@@ -30,6 +30,25 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid) {
 	const WCHAR* InvalidImageTypes[]{
 		L"image/bmp",
 		L"image/tiff",
+		L"image/pcx",
+		L"image/tga",
+		L"image/iff",
+		L"image/sgi", 
+		L"image/xpm",
+		L"image/pix",
+		L"image/ras",
+		L"image/sun",
+		L"image/wbmp",
+		L"image/pict",
+		L"image/tiff",
+		L"image/dib",
+		L"image/xwd",
+		L"image/icb",
+		L"image/vda",
+		L"image/pgm",
+		L"image/ppm",
+		L"image/pbm",
+		L"image/cut",
 	};
 
 	Gdiplus::ImageCodecInfo* pImageCodecInfo = NULL;
