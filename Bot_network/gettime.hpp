@@ -45,6 +45,7 @@ concept IsValidDataTypeTime = requires(T t) {
 
 template <typename T>
 auto ReturnTime() {
+	T time = GetTime();
 	if (time) {
 		return IsValidDataTypeTime<time>;
 	}
